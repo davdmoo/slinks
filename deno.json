@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  },
+  "imports": {
+    "@libsql/client": "npm:@libsql/client@^0.10.0",
+    "edge.js": "npm:edge.js@^6.0.2",
+    "hono": "jsr:@hono/hono@^4.5.11",
+    "nanoid": "npm:nanoid@^5.0.7"
+  },
+  "tasks": {
+    "start": "deno run --watch --allow-net --allow-env --allow-read main.ts"
+  }
+}
