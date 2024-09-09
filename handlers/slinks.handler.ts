@@ -32,7 +32,7 @@ slinks.post("/", async (c) => {
       return c.html(html`Failed while trying to create a new slink`);
     }
 
-    const redirectUrl = `http://127.0.0.1:8000/${slink.id}`;
+    const redirectUrl = `https://slinks.deno.dev/${slink.id}`;
     return c.html(html`
       <a href="${redirectUrl}" target="#blank">${redirectUrl}</a>
     `);
