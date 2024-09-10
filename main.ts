@@ -9,8 +9,8 @@ const app = new Hono();
 export const edge = Edge.create();
 edge.mount(new URL("./views", import.meta.url));
 
-app.use("/static/*", serveStatic({ root: "./" }));
-app.use("/favicon.ico", serveStatic({ path: "./static/icon.svg" }));
+app.use("/static/*", serveStatic({ root: "/" }));
+app.use("/favicon.ico", serveStatic({ path: "/static/icon.svg" }));
 
 app.get("/", async (c) => {
   const indexPage = await edge.render("index");

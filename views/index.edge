@@ -8,18 +8,27 @@
   <title>Slinks</title>
 
   <link rel="icon" type="image/x-icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/styles/index.css">
   <script src="https://unpkg.com/htmx.org@2.0.2"></script>
 </head>
 
 <body>
-  <form hx-post="/slinks" hx-swap="outerHTML" hx-target="#response" method="post" hx-disabled-elt="#url-input, #submit">
-    <label for="url">Input URL</label>
-    <input type="url" name="url" id="url-input" required>
-    <button id="submit" type="submit">Enter</button>
-  </form>
+  <main>
+    <form hx-post="/slinks" hx-swap="outerHTML" hx-target="#response" method="post"
+      hx-disabled-elt="#url-input, #submit">
+      <label for="url">Input URL</label>
 
-  <div id="response">
-  </div>
+      <div class="input">
+        <input type="url" name="url" id="url-input" required>
+        <button id="submit" type="submit">Enter</button>
+      </div>
+    </form>
+
+    <div id="response" class="response">
+      <p>Your short link will be here</p>
+      <button id="copy" disabled>Copy</button>
+    </div>
+  </main>
 </body>
 
 </html>

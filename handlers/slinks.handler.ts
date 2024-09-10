@@ -34,7 +34,10 @@ slinks.post("/", async (c) => {
 
     const redirectUrl = `https://slinks.deno.dev/${slink.id}`;
     return c.html(html`
-      <a href="${redirectUrl}" target="#blank">${redirectUrl}</a>
+      <div id="response" class="response">
+        <p>${redirectUrl}</p>
+        <button id="copy">Copy</button>
+      </div>
     `);
   } catch (err) {
     console.error(err);
