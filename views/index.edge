@@ -18,7 +18,7 @@
       hx-disabled-elt="#url-input, #submit">
       <label for="url">Input URL</label>
 
-      <div class="input">
+      <div class="input" id="input">
         <input type="url" name="url" id="url-input" required>
         <button id="submit" type="submit">Enter</button>
       </div>
@@ -30,5 +30,31 @@
     </div>
   </main>
 </body>
+
+<script>
+  async function writeToClipboard(text) {
+    await navigator.clipboard.writeText(text);
+
+    // remove the alert if already exists
+    closeAlert();
+
+    const input = document.getElementById("input");
+    input.insertAdjacentHTML("beforeend", `
+    <div id="alert"  style="margin-top: 8px;">
+      <div>
+        Copied to clipboard!
+      </div>
+      <button onclick="closeAlert()">Close</button>
+    </div>
+    `);
+  }
+
+  function closeAlert() {
+    const alert = document.getElementById("alert");
+    if (alert !== null) {
+      alert.remove();
+    }
+  }
+</script>
 
 </html>
