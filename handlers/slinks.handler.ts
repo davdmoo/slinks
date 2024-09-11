@@ -36,7 +36,7 @@ slinks.post("/", async (c) => {
     return c.html(html`
       <div id="response" class="response">
         <p>${redirectUrl}</p>
-        <button id="copy" onclick="writeToClipboard(redirectUrl)">Copy</button>
+        <button class="copy-button" onclick="writeToClipboard('${redirectUrl}')"><img src="/static/images/copy.icon.svg" alt="copy-icon"></button>
       </div>
     `);
   } catch (err) {
