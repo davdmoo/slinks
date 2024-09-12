@@ -39,7 +39,7 @@ main {
   margin-top: 4px;
 }
 
-#submit {
+.bordered-button {
   width: 72px;
   background-color: hsl(0 0% 100%);
   border: 1px solid;
@@ -48,12 +48,16 @@ main {
   color: hsl(240 5.9% 10%);
 }
 
-#submit:hover {
+.bordered-button:disabled {
+  color: grey;
+}
+
+.bordered-button:hover {
   background-color: hsl(240 5.9% 95%);
   cursor: pointer;
 }
 
-button:disabled {
+.bordered-button:hover:disabled {
   background-color: hsl(0 0% 100%);
   color: grey;
   cursor: default;
@@ -90,19 +94,18 @@ button:disabled {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-.copy-button,
-.close-button {
+.icon-button {
   background: none;
   border: none;
 }
 
-.copy-button:hover,
-.close-button:hover {
+.icon-button:hover {
   cursor: pointer;
 }
 
-.copy-button:hover:disabled,
-.close-button:hover:disabled {
+.icon-button:hover:disabled {
+  background-color: hsl(0 0% 100%);
+  color: grey;
   cursor: default;
 }
 

@@ -20,13 +20,12 @@
 
       <div class="input" id="input">
         <input type="url" name="url" id="url-input" required>
-        <button id="submit" type="submit">Enter</button>
+        <button class="bordered-button" id="submit" type="submit">Enter</button>
       </div>
     </form>
 
     <div id="response" class="response">
       <p>Your short link will be here</p>
-      <button class="copy-button" disabled><img src="/static/images/copy.icon.svg" alt="copy-icon"></button>
     </div>
   </main>
 </body>
@@ -42,7 +41,7 @@
     input.insertAdjacentHTML("beforeend", `
       <div id="alert">
         <p>Copied to clipboard!</p>
-        <button class="close-button" onclick="closeAlert()"><img src="/static/images/remove.icon.svg" alt="close-icon" />
+        <button class="icon-button" onclick="closeAlert()"><img src="/static/images/remove.icon.svg" alt="close-icon" />
       </div>
     `);
   }

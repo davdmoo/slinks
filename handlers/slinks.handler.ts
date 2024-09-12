@@ -29,14 +29,17 @@ slinks.post("/", async (c) => {
     }
 
     if (slink === undefined) {
-      return c.html(html`Failed while trying to create a new slink`);
+      return c.html(html`
+        <div id="response" class="response">
+          <p>Failed while trying to create a new slink</p>
+        </div>`);
     }
 
     const redirectUrl = `https://slinks.deno.dev/${slink.id}`;
     return c.html(html`
       <div id="response" class="response">
         <p>${redirectUrl}</p>
-        <button class="copy-button" onclick="writeToClipboard('${redirectUrl}')"><img src="/static/images/copy.icon.svg" alt="copy-icon"></button>
+        <button class="icon-button" onclick="writeToClipboard('${redirectUrl}')"><img src="/static/images/copy.icon.svg" alt="copy-icon"></button>
       </div>
     `);
   } catch (err) {
