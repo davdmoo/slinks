@@ -9,9 +9,29 @@
     'Noto Color Emoji';
 }
 
+:root {
+  --dark-primary-color: rgb(48, 52, 70);
+  --dark-secondary-color: rgb(98, 104, 128);
+  --dark-primary-hover-color: rgb(115, 121, 148);
+  --dark-disabled-color: rgb(148, 156, 187);
+  --dark-fg-color: rgb(186, 187, 241);
+  --dark-text-color: rgb(198, 208, 245);
+
+  --light-primary-color: hsl(0, 0%, 100%);
+  --light-secondary-color: hsl(240, 5.9%, 90%);
+  --light-primary-hover-color: hsl(240 5.9% 95%);
+  --light-disabled-color: grey;
+  --light-fg-color: hsl(240 5.9% 10%);
+  --light-text-color: hsl(240 5.9% 10%);
+}
 
 p {
   font-size: 14px;
+  color: var(--light-text-color);
+}
+
+.dark p {
+  color: var(--dark-text-color);
 }
 
 body {
@@ -24,12 +44,11 @@ body {
   padding-right: 16px;
   padding-left: 16px;
   min-height: 100vh;
+  background-color: var(--light-primary-color);
 }
 
 .dark {
-}
-
-.light {
+  background-color: var(--dark-primary-color);
 }
 
 main {
@@ -37,6 +56,90 @@ main {
   min-width: 300px;
   width: 100%;
   margin: 0px;
+}
+
+:disabled {
+  color: var(--light-disabled-color);
+}
+
+.dark :disabled {
+  color: var(--dark-disabled-color);
+}
+
+input {
+  background-color: var(--light-primary-color);
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: var(--light-secondary-color);
+  outline: none;
+}
+
+.dark input {
+  background-color: var(--dark-primary-color);
+  border-color: var(--dark-secondary-color);
+  color: var(--dark-text-color);
+}
+
+label {
+  color: var(--light-text-color);
+}
+
+.dark label {
+  color: var(--dark-text-color);
+}
+
+input:focus {
+  border-color: var(--light-fg-color);
+}
+
+.dark input:focus {
+  border-color: var(--dark-fg-color);
+}
+
+button {
+  background-color: var(--light-primary-color);
+  color: var(--light-fg-color);
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: var(--light-secondary-color);
+}
+
+.dark button {
+  background-color: var(--dark-primary-color);
+  color: var(--dark-fg-color);
+  border-color: var(--dark-secondary-color);
+}
+
+button:hover {
+  background-color: var(--light-primary-hover-color);
+  border-color: var(--light-fg-color);
+  cursor: pointer;
+}
+
+.dark button:hover {
+  background-color: var(--dark-primary-hover-color);
+  border-color: var(--dark-fg-color);
+}
+
+button:hover:disabled {
+  background-color: var(--light-primary-color);
+  color: var(--light-disabled-color);
+  border-color: var(--light-secondary-color);
+  cursor: default;
+}
+
+.dark button:hover:disabled {
+  background-color: var(--dark-primary-color);
+  color: var(--dark-disabled-color);
+  border-color: var(--dark-secondary-color);
+}
+
+.dark svg {
+  color: var(--dark-fg-color);
+}
+
+.dark svg path {
+  stroke: var(--dark-fg-color);
 }
 
 .input {
@@ -47,26 +150,6 @@ main {
 
 .bordered-button {
   width: 72px;
-  background-color: hsl(0 0% 100%);
-  border: 1px solid;
-  border-radius: 4px;
-  border-color: hsl(240 5.9% 90%);
-  color: hsl(240 5.9% 10%);
-}
-
-.bordered-button:disabled {
-  color: grey;
-}
-
-.bordered-button:hover {
-  background-color: hsl(240 5.9% 95%);
-  cursor: pointer;
-}
-
-.bordered-button:hover:disabled {
-  background-color: hsl(0 0% 100%);
-  color: grey;
-  cursor: default;
 }
 
 #url-input {
@@ -74,23 +157,13 @@ main {
   margin-right: 8px;
   padding-left: 8px;
   padding-right: 8px;
-  border: 1px solid;
-  border-radius: 4px;
-  border-color: hsl(240 5.9% 90%);
-  outline: none;
-}
-
-#url-input:focus {
-  border: 1px solid;
-  border-radius: 4px;
-  border-color: hsl(240 5.9% 10%);
 }
 
 #response {
   margin-top: 8px;
   border: 1px solid;
   border-radius: 4px;
-  border-color: hsl(240 5.9% 90%);
+  border-color: var(--light-secondary-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -100,19 +173,13 @@ main {
   animation: fadeIn 0.5s ease-in-out;
 }
 
+.dark #response {
+  border-color: var(--dark-secondary-color);
+}
+
 .icon-button {
   background: none;
   border: none;
-}
-
-.icon-button:hover {
-  cursor: pointer;
-}
-
-.icon-button:hover:disabled {
-  background-color: hsl(0 0% 100%);
-  color: grey;
-  cursor: default;
 }
 
 #alert {
@@ -122,7 +189,7 @@ main {
   margin-top: 8px;
   border: 1px solid;
   border-radius: 4px;
-  border-color: hsl(240 5.9% 90%);
+  border-color: var(--light-secondary-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -130,6 +197,10 @@ main {
   padding: 8px;
   height: 24px;
   animation: fadeIn 0.5s ease-in-out;
+}
+
+.dark #alert {
+  border-color: var(--dark-secondary-color);
 }
 
 @keyframes fadeIn {
