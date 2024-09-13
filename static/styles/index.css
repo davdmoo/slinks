@@ -26,6 +26,12 @@ body {
   min-height: 100vh;
 }
 
+.dark {
+}
+
+.light {
+}
+
 main {
   max-width: 420px;
   min-width: 300px;

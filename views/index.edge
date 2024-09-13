@@ -12,7 +12,7 @@
   <script src="https://unpkg.com/htmx.org@2.0.2"></script>
 </head>
 
-<body>
+<body onload="onLoad()">
   <main id="main">
     <form hx-post="/slinks" hx-swap="outerHTML" hx-target="#response" method="post"
       hx-disabled-elt="#url-input, #submit">
@@ -50,6 +50,28 @@
     const alert = document.getElementById("alert");
     if (alert !== null) {
       alert.remove();
+    }
+  }
+
+  function onLoad() {
+    const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    prefersDarkTheme.onchange = function (event) {
+      // toggle dark theme on change
+      toggleDarkTheme(event.matches);
+    }
+
+    // toggle dark theme on load
+    toggleDarkTheme(prefersDarkTheme.matches);
+  }
+
+  function toggleDarkTheme(booleanValue) {
+    const bodyClassList = document.body.classList;
+    if (booleanValue) {
+      bodyClassList.remove("light");
+      bodyClassList.add("dark");
+    } else {
+      bodyClassList.remove("dark");
+      bodyClassList.add("light");
     }
   }
 </script>
