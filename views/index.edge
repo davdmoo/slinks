@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="sl-theme-light">
 
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,15 @@
 
   <link rel="icon" type="image/x-icon" href="/static/icon.svg">
   <link rel="stylesheet" href="/static/styles/index.css">
+
   <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+  <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+
 </head>
 
 <body onload="onLoad()">
@@ -20,65 +28,40 @@
 
       <div class="input" id="input">
         <input type="url" name="url" id="url-input" required>
-        <button class="bordered-button" id="submit" type="submit">Enter</button>
+        <sl-button id="submit" type="submit">Enter</sl-button>
       </div>
     </form>
 
     <div id="response" class="response">
-      <p>Your short link will be here</p>
+      <p>Your short link appear here</p>
+    </div>
+
+    <div id="alert" style="display: none;">
+      <p>Copied to clipboard!</p>
+      <sl-icon-button style="font-size: 16px;" name="x" label="close" _="on click hide #alert"></sl-icon-button>
     </div>
   </main>
+
 </body>
 
 <script>
-  async function writeToClipboard(text) {
-    await navigator.clipboard.writeText(text);
-
-    // remove the alert if already exists
-    closeAlert();
-
-    const input = document.getElementById("main");
-    input.insertAdjacentHTML("beforeend", `
-      <div id="alert">
-        <p>Copied to clipboard!</p>
-        <button class="icon-button" onclick="closeAlert()">
-          <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg" color="#000000">
-            <path
-              d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426"
-              stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </button>
-      </div>
-    `);
-  }
-
-  function closeAlert() {
-    const alert = document.getElementById("alert");
-    if (alert !== null) {
-      alert.remove();
-    }
-  }
-
   function onLoad() {
-    const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
-    prefersDarkTheme.onchange = function (event) {
-      // toggle dark theme on change
-      toggleDarkTheme(event.matches);
+    const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (prefersDarkTheme.matches) {
+      const html = document.querySelector("html");
+      html.classList.remove("sl-theme-light");
+      html.classList.add("sl-theme-dark");
     }
 
-    // toggle dark theme on load
-    toggleDarkTheme(prefersDarkTheme.matches);
-  }
-
-  function toggleDarkTheme(booleanValue) {
-    const bodyClassList = document.body.classList;
-    if (booleanValue) {
-      bodyClassList.remove("light");
-      bodyClassList.add("dark");
-    } else {
-      bodyClassList.remove("dark");
-      bodyClassList.add("light");
+    prefersDarkTheme.onchange = function (event) {
+      const html = document.querySelector("html");
+      if (event.matches) {
+        html.classList.remove("sl-theme-light");
+        html.classList.add("sl-theme-dark");
+      } else {
+        html.classList.remove("sl-theme-dark");
+        html.classList.add("sl-theme-light");
+      }
     }
   }
 </script>
