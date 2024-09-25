@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- This tag prevents crawlers from indexing or following the link, ensuring the short link’s metadata remains hidden. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Slinks</title>
+  <style>
+    * {
+      font-family:
+        ui-sans-serif,
+        system-ui,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        Segoe UI Symbol,
+        'Noto Color Emoji';
+    }
+  </style>
+</head>
+
+<body>
+  <p>You are being redirected...</p>
+  <a href="{{url}}">Click here if you're not automatically redirected.</a>
+</body>
+
+<script>
+  const href = "{{url}}";
+  setTimeout((_) => {
+    globalThis.window.location.href = href;
+  }, 500);
+</script>
+
+</html>

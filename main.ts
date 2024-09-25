@@ -32,7 +32,14 @@ app.get("/:id", async (c) => {
     return c.html(errorPage);
   }
 
-  return c.redirect(slink.url as string, 302);
+  // set headers to disable embedded links to show actual URL page
+  c.header("X-Robots-Tag", "noindex, nofollow");
+  c.header("X-Content-Type-Options", "nosniff");
+
+  const redirectPage = await edge.render("redirect", {
+    url: slink.url,
+  });
+  return c.html(redirectPage);
 });
 
 app.route("/slinks", slinks);
