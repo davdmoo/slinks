@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="sl-theme-light">
+<html lang="en" class="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Slinks</title>
-
-  <link rel="icon" type="image/x-icon" href="/static/icon.svg">
   <link rel="stylesheet" href="/static/styles/index.css">
 
   <script src="https://unpkg.com/htmx.org@2.0.2"></script>
   <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.css" />
-  <script type="module"
-    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
 
 </head>
 
@@ -28,7 +21,7 @@
 
       <div class="input" id="input">
         <input type="url" name="url" id="url-input" required>
-        <sl-button id="submit" type="submit">Enter</sl-button>
+        <button style="width: 60px;" type="submit" id="submit">Enter</button>
       </div>
     </form>
 
@@ -38,7 +31,14 @@
 
     <div id="alert" style="display: none;">
       <p>Copied to clipboard!</p>
-      <sl-icon-button style="font-size: 16px;" name="x" label="close" _="on click hide #alert"></sl-icon-button>
+      <button _="on click hide #alert" style="border: none;">
+        <svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
     </div>
   </main>
 
@@ -49,18 +49,18 @@
     const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (prefersDarkTheme.matches) {
       const html = document.querySelector("html");
-      html.classList.remove("sl-theme-light");
-      html.classList.add("sl-theme-dark");
+      html.classList.remove("light");
+      html.classList.add("dark");
     }
 
     prefersDarkTheme.onchange = function (event) {
       const html = document.querySelector("html");
       if (event.matches) {
-        html.classList.remove("sl-theme-light");
-        html.classList.add("sl-theme-dark");
+        html.classList.remove("light");
+        html.classList.add("dark");
       } else {
-        html.classList.remove("sl-theme-dark");
-        html.classList.add("sl-theme-light");
+        html.classList.remove("dark");
+        html.classList.add("light");
       }
     }
   }
