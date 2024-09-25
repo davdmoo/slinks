@@ -97,14 +97,28 @@
   `;
 
   function onLoad() {
-    const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (prefersDarkTheme.matches) {
-      const html = document.querySelector("html");
-      html.classList.remove("light");
-      html.classList.add("dark");
+    // check for previously saved theme
+    const savedTheme = localStorage.getItem("theme");
+    const html = document.querySelector("html");
 
-      const themeToggler = document.getElementById("theme-toggler");
-      themeToggler.innerHTML = darkIcon;
+    // no preference or first page load
+    if (savedTheme === null) {
+      const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (prefersDarkTheme.matches) {
+        html.classList.remove("light");
+        html.classList.add("dark");
+
+        const themeToggler = document.getElementById("theme-toggler");
+        themeToggler.innerHTML = darkIcon;
+      }
+    } else {
+      if (savedTheme === "light") {
+        html.classList.remove("dark");
+        html.classList.add("light");
+      } else {
+        html.classList.remove("light");
+        html.classList.add("dark");
+      }
     }
   }
 
@@ -118,12 +132,21 @@
       html.classList.add("dark");
 
       button.innerHTML = darkIcon;
+      savePreferredTheme("dark");
     } else {
       html.classList.remove("dark");
       html.classList.add("light");
 
       button.innerHTML = lightIcon;
+      savePreferredTheme("light");
     }
+  }
+
+  /**
+  * @param {"light" | "dark"} value
+  */
+  function savePreferredTheme(value) {
+    localStorage.setItem("theme", value);
   }
 </script>
 
