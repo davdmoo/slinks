@@ -14,8 +14,8 @@
 </head>
 
 <body onload="onLoad()">
-  <main id="main">
 
+  <main id="main">
     <div class="header">
       <label for="url">Input URL</label>
       <button id="theme-toggler" title="Toggle light/dark mode" style="border: none;" onclick="toggleTheme()">
@@ -47,7 +47,7 @@
       </div>
     </form>
 
-    <div id="response" class="response">
+    <div id="response">
       <p>Your short link appear here</p>
     </div>
 
@@ -63,9 +63,6 @@
       </button>
     </div>
   </main>
-
-  <footer>
-  </footer>
 
 </body>
 
@@ -98,12 +95,12 @@
   `;
 
   function onLoad() {
-    // check for previously saved theme
-    const savedTheme = localStorage.getItem("theme");
     const html = document.querySelector("html");
 
-    // no preference or first page load
+    // check for previously saved theme
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme === null) {
+      // no preference or first page load
       const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
       if (prefersDarkTheme.matches) {
         html.classList.remove("light");
@@ -124,7 +121,7 @@
   }
 
   function toggleTheme() {
-    const button = document.getElementById("theme-toggler");
+    const themeToggler = document.getElementById("theme-toggler");
     const html = document.querySelector("html");
     const currentTheme = html.classList.contains("light") ? "light" : "dark";
 
@@ -132,13 +129,13 @@
       html.classList.remove("light");
       html.classList.add("dark");
 
-      button.innerHTML = darkIcon;
+      themeToggler.innerHTML = darkIcon;
       savePreferredTheme("dark");
     } else {
       html.classList.remove("dark");
       html.classList.add("light");
 
-      button.innerHTML = lightIcon;
+      themeToggler.innerHTML = lightIcon;
       savePreferredTheme("light");
     }
   }
