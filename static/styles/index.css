@@ -16,8 +16,13 @@
   --disabled-color: grey;
   --fg-color: hsl(240 5.9% 10%);
   --text-color: hsl(240 5.9% 10%);
+  --link-color: blue;
+  --link-color-visited: purple;
 }
 
+/**
+* uses catppuccin frappe theme
+*/
 .dark {
   --primary-color: rgb(48, 52, 70);
   --secondary-color: rgb(98, 104, 128);
@@ -25,6 +30,8 @@
   --disabled-color: rgb(148, 156, 187);
   --fg-color: rgb(186, 187, 241);
   --text-color: rgb(198, 208, 245);
+  --link-color: hsl(222, 74%, 74%);
+  --link-color-visited: hsl(40, 62%, 73%);
 }
 
 p {
@@ -34,6 +41,11 @@ p {
 
 a {
   font-size: 14px;
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-color-visited);
 }
 
 body {
@@ -97,14 +109,12 @@ button {
 
 button:hover {
   background-color: var(--primary-hover-color);
-  border-color: var(--fg-color);
   cursor: pointer;
 }
 
 button:hover:disabled {
   background-color: var(--primary-color);
   color: var(--disabled-color);
-  border-color: var(--secondary-color);
   cursor: not-allowed;
 }
 
@@ -169,4 +179,16 @@ button:hover:disabled {
   to {
     opacity: 1;
   }
+}
+
+footer {
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+}
+
+footer p {
+  line-height: 0%;
 }
