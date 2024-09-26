@@ -44,7 +44,7 @@ slinks.post("/", async (c) => {
 
     return c.html(html`
       <div id="response">
-        <p>${redirectUrl}</p>
+        <a href="${redirectUrl}" target="_blank">${redirectUrl}</a>
         <div class="actions">
           <button style="border: none;" title="Download QR code">
             <a download="qrcode" href="${qrCode}">

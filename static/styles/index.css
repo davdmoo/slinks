@@ -32,6 +32,10 @@ p {
   color: var(--text-color);
 }
 
+a {
+  font-size: 14px;
+}
+
 body {
   padding: 0px;
   margin: 0px;
