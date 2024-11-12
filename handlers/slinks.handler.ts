@@ -3,13 +3,12 @@ import { html } from "hono/html";
 import { nanoid } from "npm:nanoid";
 import QRCode from "npm:qrcode";
 import { db } from "../db.ts";
+import type Slink from "../models/slink.model.ts";
 
 export const slinks = new Hono();
 
 slinks.post("/", async (c) => {
   try {
-    // await new Promise((r) => setTimeout(r, 5000));
-
     const { url } = await c.req.parseBody();
 
     // check if the url already exists in the DB
@@ -18,15 +17,15 @@ slinks.post("/", async (c) => {
       args: { url: url as string },
     });
 
-    let slink: Record<string, unknown> | undefined;
-    const existingSlink = existingSlinkQueryResult.rows.at(0);
+    let slink: Slink | undefined;
+    const existingSlink = existingSlinkQueryResult.rows.at(0) as Slink;
     if (existingSlink === undefined) {
       const id = nanoid(6);
       const queryResult = await db.execute({
         sql: "INSERT INTO slinks (id, url) VALUES (:id, :url) RETURNING *;",
         args: { id, url: url as string },
       });
-      slink = queryResult.rows.at(0);
+      slink = queryResult.rows.at(0) as Slink;
     } else {
       slink = existingSlink;
     }
